@@ -49,9 +49,6 @@ const OfficerDashboard = () => {
       const statsResponse = await api.get('/applications/stats');
       const monthlyResponse = await api.get('/applications/monthly');
       
-      console.log('Stats response:', statsResponse.data);
-      console.log('Monthly response:', monthlyResponse.data);
-      
       // Ensure stats data has all required fields
       const safeStats = {
         pending: statsResponse.data?.pending || 0,
@@ -62,8 +59,6 @@ const OfficerDashboard = () => {
         total_applications: statsResponse.data?.total_applications || 0,
         monthly: Array.isArray(monthlyResponse.data) ? monthlyResponse.data : []
       };
-      
-      console.log('Safe stats:', safeStats);
       
       setStats(safeStats);
     } catch (error) {

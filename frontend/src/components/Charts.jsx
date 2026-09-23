@@ -19,8 +19,6 @@ import {
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
 
 export const ApplicationStatusChart = ({ data }) => {
-  console.log('ApplicationStatusChart received data:', data);
-  
   // Ensure data is valid and has required fields
   const safeData = {
     pending: data?.pending || 0,
@@ -30,8 +28,6 @@ export const ApplicationStatusChart = ({ data }) => {
     waitlisted: data?.waitlisted || 0,
   };
 
-  console.log('ApplicationStatusChart safeData:', safeData);
-
   const chartData = [
     { name: 'Pending', value: safeData.pending, color: COLORS[2] },
     { name: 'Under Review', value: safeData.under_review, color: COLORS[0] },
@@ -40,11 +36,8 @@ export const ApplicationStatusChart = ({ data }) => {
     { name: 'Waitlisted', value: safeData.waitlisted, color: COLORS[4] },
   ];
 
-  console.log('ApplicationStatusChart chartData:', chartData);
-
   // If no data, show empty state
   if (chartData.every(item => item.value === 0)) {
-    console.log('ApplicationStatusChart showing empty state');
     return (
       <div className="h-64 flex items-center justify-center text-gray-400">
         <div className="text-center">
@@ -58,8 +51,6 @@ export const ApplicationStatusChart = ({ data }) => {
 
   // Filter only items with values > 0 for the pie chart
   const filteredData = chartData.filter(item => item.value > 0);
-  
-  console.log('ApplicationStatusChart filteredData:', filteredData);
 
   return (
     <ResponsiveContainer width="100%" height={300}>
